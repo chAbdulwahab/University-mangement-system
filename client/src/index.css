@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0F172A;
+  --text: #F8FAFC;
+  --accent: #06B6D4;
+  --primary: #2563EB;
+  --highlight: #14B8A6;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.1);
+  --sidebar: rgba(255, 255, 255, 0.05);
+  --modal-overlay: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme='light'] {
+  --background: #F1F5F9;
+  --text: #1E293B;
+  --accent: #0891B2;
+  --primary: #2563EB;
+  --highlight: #0D9488;
+  --card-bg: #FFFFFF;
+  --border: #E2E8F0;
+  --sidebar: #FFFFFF;
+  --modal-overlay: rgba(0, 0, 0, 0.4);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-text: var(--text);
+  --color-accent: var(--accent);
+  --color-primary: var(--primary);
+  --color-highlight: var(--highlight);
+  --color-card: var(--card-bg);
+  --color-border: var(--border);
+  --color-sidebar: var(--sidebar);
+  --color-overlay: var(--modal-overlay);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans antialiased;
+    margin: 0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-text via-text/80 to-accent;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card backdrop-blur-md border border-border rounded-2xl p-6 shadow-xl;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/80 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 active:scale-95 shadow-lg shadow-primary/20;
+  }
+  
+  .btn-accent {
+    @apply bg-accent hover:bg-accent/80 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 active:scale-95 shadow-lg shadow-accent/20;
+  }
+
+  .input-field {
+    @apply w-full bg-card border border-border rounded-lg py-2 px-4 focus:outline-none focus:border-accent transition-all duration-300 text-text;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20;
+}

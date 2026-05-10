@@ -1,0 +1,4 @@
+/* Main layout and utility styles */
+.min-h-screen {
+  min-height: 100vh;
+}
