@@ -94,7 +94,7 @@ const Dashboard = () => {
     <div className="flex h-screen overflow-hidden bg-background">
       {/* Mobile Top Bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-sidebar border-b border-border flex items-center justify-between px-6 z-[60] print:hidden">
-        <Link to="/dashboard" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
             <span className="font-bold text-lg text-text">U</span>
           </div>
@@ -126,7 +126,7 @@ const Dashboard = () => {
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="p-6">
-          <Link to="/dashboard" className="hidden lg:flex items-center gap-3 mb-8">
+          <Link to="/" className="hidden lg:flex items-center gap-3 mb-8">
             <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center">
               <span className="font-bold text-xl text-text">U</span>
             </div>
