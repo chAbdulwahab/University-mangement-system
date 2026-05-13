@@ -11,7 +11,11 @@ import {
   Bot
 } from 'lucide-react';
 
+import { useSelector } from 'react-redux';
+
 const Landing = () => {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       {/* Navigation */}
@@ -27,10 +31,14 @@ const Landing = () => {
             <a href="#features" className="text-sm font-medium text-text/60 hover:text-accent transition-colors">Features</a>
             <Link to="/about" className="text-sm font-medium text-text/60 hover:text-accent transition-colors">About</Link>
             <Link to="/contact" className="text-sm font-medium text-text/60 hover:text-accent transition-colors">Support</Link>
-            <Link to="/login" className="text-sm font-medium text-text/60 hover:text-accent transition-colors">Sign In</Link>
+            {user ? (
+               <Link to="/dashboard" className="text-sm font-bold text-accent transition-colors">Portal Dashboard</Link>
+            ) : (
+               <Link to="/login" className="text-sm font-medium text-text/60 hover:text-accent transition-colors">Sign In</Link>
+            )}
           </div>
-          <Link to="/register" className="btn-accent !rounded-full !py-2 !px-6 text-sm">
-            Get Started
+          <Link to={user ? "/dashboard" : "/register"} className="btn-accent !rounded-full !py-2 !px-6 text-sm">
+            {user ? 'Go to Dashboard' : 'Get Started'}
           </Link>
         </div>
       </nav>
@@ -59,12 +67,14 @@ const Landing = () => {
                   A comprehensive, AI-driven management system designed for modern campuses. Streamline administration, empower faculty, and inspire students.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                  <Link to="/register" className="btn-primary flex items-center gap-2 !py-4 !px-8 text-lg w-full sm:w-auto">
-                    Start Your Journey <ArrowRight className="w-5 h-5" />
+                  <Link to={user ? "/dashboard" : "/register"} className="btn-primary flex items-center gap-2 !py-4 !px-8 text-lg w-full sm:w-auto">
+                    {user ? 'Back to Dashboard' : 'Start Your Journey'} <ArrowRight className="w-5 h-5" />
                   </Link>
-                  <Link to="/login" className="px-8 py-4 text-text font-semibold hover:text-accent transition-colors">
-                    Log in to Portal
-                  </Link>
+                  {!user && (
+                    <Link to="/login" className="px-8 py-4 text-text font-semibold hover:text-accent transition-colors">
+                      Log in to Portal
+                    </Link>
+                  )}
                 </div>
               </motion.div>
             </div>
