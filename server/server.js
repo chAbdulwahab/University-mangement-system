@@ -17,7 +17,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: true,
+        credentials: true,
         methods: ["GET", "POST"]
     }
 });
@@ -40,7 +41,10 @@ app.set('socketio', io);
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: true, // Allow all origins for now
+    credentials: true
+}));
 app.use(helmet({
     crossOriginResourcePolicy: false,
 }));

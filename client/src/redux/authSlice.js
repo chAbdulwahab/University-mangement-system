@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import API from '../utils/api';
 
 const user = JSON.parse(localStorage.getItem('user'));
 
@@ -14,7 +14,7 @@ const initialState = {
 // Login user
 export const login = createAsyncThunk('auth/login', async (userData, thunkAPI) => {
   try {
-    const response = await axios.post('/api/auth/login', userData);
+    const response = await API.post('/auth/login', userData);
     if (response.data) {
       localStorage.setItem('user', JSON.stringify(response.data));
     }
@@ -28,14 +28,9 @@ export const login = createAsyncThunk('auth/login', async (userData, thunkAPI) =
 // Get user profile
 export const getProfile = createAsyncThunk('auth/getProfile', async (_, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.user.token;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await axios.get('/api/auth/profile', config);
+    const response = await API.get('/auth/profile');
     // Merge token back into the profile since API doesn't return it for GET profile
+    const token = thunkAPI.getState().auth.user.token;
     const profileWithToken = { ...response.data, token };
     localStorage.setItem('user', JSON.stringify(profileWithToken));
     return profileWithToken;
@@ -48,13 +43,7 @@ export const getProfile = createAsyncThunk('auth/getProfile', async (_, thunkAPI
 // Update user profile
 export const updateProfile = createAsyncThunk('auth/updateProfile', async (userData, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.user.token;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await axios.put('/api/auth/profile', userData, config);
+    const response = await API.put('/auth/profile', userData);
     if (response.data) {
       localStorage.setItem('user', JSON.stringify(response.data));
     }
