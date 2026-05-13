@@ -38,7 +38,7 @@ function App() {
     <Router>
       <div className="min-h-screen bg-background text-text transition-colors duration-300">
         <Routes>
-          <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Landing />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
