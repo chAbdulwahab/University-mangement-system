@@ -66,7 +66,7 @@ const Dashboard = () => {
   };
 
   const navItems = user?.role === 'Admin' ? [
-    { label: 'Overview', icon: LayoutDashboard, path: '/' },
+    { label: 'Overview', icon: LayoutDashboard, path: '/dashboard' },
     { label: 'Analytics', icon: BarChart3, path: '/analytics' },
     { label: 'Students', icon: Users, path: '/students' },
     { label: 'Faculty', icon: UserCheck, path: '/teachers' },
@@ -74,14 +74,14 @@ const Dashboard = () => {
     { label: 'Courses', icon: BookOpen, path: '/courses' },
     { label: 'Finance', icon: CreditCard, path: '/finance' },
   ] : user?.role === 'Teacher' ? [
-    { label: 'Overview', icon: LayoutDashboard, path: '/' },
+    { label: 'Overview', icon: LayoutDashboard, path: '/dashboard' },
     { label: 'Attendance', icon: Calendar, path: '/attendance' },
     { label: 'Marks', icon: Award, path: '/marks' },
     { label: 'Assignments', icon: Briefcase, path: '/assignments' },
     { label: 'Materials', icon: BookOpen, path: '/materials' },
     { label: 'Profile', icon: UserCheck, path: '/teacher-profile' },
   ] : [
-    { label: 'Overview', icon: LayoutDashboard, path: '/' },
+    { label: 'Overview', icon: LayoutDashboard, path: '/dashboard' },
     { label: 'Enroll', icon: BookOpen, path: '/enroll' },
     { label: 'Attendance', icon: Calendar, path: '/attendance-view' },
     { label: 'Results', icon: Award, path: '/results' },
@@ -94,7 +94,7 @@ const Dashboard = () => {
     <div className="flex h-screen overflow-hidden bg-background">
       {/* Mobile Top Bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-sidebar border-b border-border flex items-center justify-between px-6 z-[60] print:hidden">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/dashboard" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
             <span className="font-bold text-lg text-text">U</span>
           </div>
@@ -126,7 +126,7 @@ const Dashboard = () => {
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="p-6">
-          <Link to="/" className="hidden lg:flex items-center gap-3 mb-8">
+          <Link to="/dashboard" className="hidden lg:flex items-center gap-3 mb-8">
             <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center">
               <span className="font-bold text-xl text-text">U</span>
             </div>

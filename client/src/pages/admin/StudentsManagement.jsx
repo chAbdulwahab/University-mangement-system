@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { UserPlus, Trash2, Search, GraduationCap, X, User, Mail, Lock, BookOpen, Hash, Plus, Edit2, BookPlus } from 'lucide-react';
+import { UserPlus, Trash2, Search, GraduationCap, X, User, Mail, Lock, BookOpen, Hash, Plus, Edit2, BookPlus, Eye, EyeOff } from 'lucide-react';
 
 const StudentManagement = () => {
     const [students, setStudents] = useState([]);
@@ -11,7 +11,8 @@ const StudentManagement = () => {
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [editingStudent, setEditingStudent] = useState(null);
-    
+    const [showPassword, setShowPassword] = useState(false);
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -257,15 +258,24 @@ const StudentManagement = () => {
                                         <label className="text-sm text-text/60 flex items-center gap-2">
                                             <Lock className="w-4 h-4" /> Password
                                         </label>
-                                        <input 
-                                            type="password" 
-                                            name="password"
-                                            required
-                                            className="input-field w-full"
-                                            placeholder="••••••••"
-                                            value={formData.password}
-                                            onChange={handleInputChange}
-                                        />
+                                        <div className="relative">
+                                            <input 
+                                                type={showPassword ? "text" : "password"}
+                                                name="password"
+                                                required
+                                                className="input-field w-full pr-10"
+                                                placeholder="••••••••"
+                                                value={formData.password}
+                                                onChange={handleInputChange}
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                className="absolute right-3 top-1/2 -translate-y-1/2 text-text/40 hover:text-text transition-colors"
+                                            >
+                                                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 
