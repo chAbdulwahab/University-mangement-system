@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { GraduationCap, Mail, Lock, User, BookOpen, ArrowRight, Eye, EyeOff } from 'lucide-react';
-import axios from 'axios';
+import API from '../utils/api';
 
 const Register = () => {
   const [formData, setFormData] = useState({

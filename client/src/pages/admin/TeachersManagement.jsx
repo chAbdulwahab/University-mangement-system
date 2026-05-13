@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../../utils/api';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UserCheck, Trash2, Search, Briefcase, Plus, X, User, Mail, Lock, BookOpen, Eye, EyeOff } from 'lucide-react';
 
@@ -25,9 +24,7 @@ const TeacherManagement = () => {
 
     const fetchTeachers = async () => {
         try {
-            const { data } = await axios.get('/api/admin/teachers', { 
-                headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}` }
-            });
+            const { data } = await API.get('/admin/teachers');
             setTeachers(data);
             setLoading(false);
         } catch (error) {
@@ -38,9 +35,7 @@ const TeacherManagement = () => {
 
     const fetchDepartments = async () => {
         try {
-            const { data } = await axios.get('/api/admin/departments', {
-                headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}` }
-            });
+            const { data } = await API.get('/admin/departments');
             setDepartments(data);
         } catch (error) {
             console.error('Error fetching departments', error);
@@ -54,9 +49,7 @@ const TeacherManagement = () => {
     const handleAddTeacher = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/api/admin/users', formData, {
-                headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}` }
-            });
+            await API.post('/admin/teachers', formData);
             alert('Faculty member added successfully!');
             setShowAddModal(false);
             setFormData({ name: '', email: '', password: '', department: '', role: 'Teacher' });
